@@ -1,0 +1,44 @@
+# Node
+node_modules/
+.npmrc
+
+# Python
+ai/.venv/
+__pycache__/
+*.pyc
+
+# Env
+backend/.env
+.env
+
+# Build
+frontend/dist/
+.DS_Store
+
+# Additional Node/Vite
+frontend/node_modules/
+backend/node_modules/
+frontend/.vite/
+
+# More Python
+.venv/
+venv/
+.pytest_cache/
+
+# Env variants
+.env.*
+*.env
+*.env.local
+
+# Logs & Coverage
+logs/
+*.log
+.coverage
+coverage/
+
+# IDE & Editor
+.idea/
+.vscode/
+
+# OS
+Thumbs.db

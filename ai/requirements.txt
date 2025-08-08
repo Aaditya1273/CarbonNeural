@@ -1,0 +1,7 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.0
+pydantic==2.7.4
+typing-extensions>=4.10.0
+numpy==1.26.4
+# Keep sklearn for quick future model prototypes
+scikit-learn==1.4.2
