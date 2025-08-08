@@ -7,16 +7,47 @@ A hackathon-ready platform combining AI-driven carbon footprint analysis, autono
 -   **AI-Powered Insights**: Go beyond simple estimates with advanced analytics, including uncertainty quantification and cost-effective optimization paths.
 -   **Decentralized & Verifiable**: Mint carbon credits automatically on Hedera based on verified emission reductions.
 -   **Autonomous Agents**: Receive actionable, AI-driven suggestions to improve sustainability.
--   **Engaging UX**: A gamified, professional dashboard built on transparent and verifiable data.
+-   **Premium UX**: Glassmorphism UI, smooth animations, informative tooltips.
 
 ## Features
 
--   **Dual AI Engines**: Switch between a standard model and an advanced engine.
--   **Advanced Analytics (V2 Engine)**:
-    -   **Uncertainty Estimation**: Provides a 90% confidence interval for your carbon footprint, acknowledging real-world variability.
-    -   **Marginal Abatement Cost (MAC)**: Identifies the most cost-effective ways to reduce emissions.
-    -   **Tokenization Preview**: Estimates how many carbon credits you can earn on Hedera and how long it will take.
--   **Seamless Integration**: A responsive React frontend, a robust Node.js backend, and a powerful Python AI service work together seamlessly.
+| Capability | Standard Engine | Advanced Engine (V2) |
+|---|---|---|
+| Daily footprint | ✅ | ✅ |
+| Guidance notes | ✅ | ✅ (richer) |
+| Uncertainty bands (90% CI) | – | ✅ |
+| Emission breakdown | – | ✅ |
+| Marginal Abatement Cost ranking | – | ✅ |
+| Tokenization preview (credits/month) | – | ✅ |
+
+> Tip: Toggle “Use Advanced Engine” in the dashboard to switch engines.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    UI[React + Vite\nDashboard] -->|POST /api/footprint\n(?advanced=true)| B(Express Backend)
+    B -->|proxy| A1[/AI: /predict/]
+    B -->|proxy (advanced)| A2[/AI: /predict_v2/]
+    B --> H[(Hedera HTS)]
+    A2 -->|uncertainty, MAC, tokenization| UI
+```
+
+### Request Lifecycle (Advanced)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant FE as Frontend
+    participant BE as Backend
+    participant AI as AI Service
+    User->>FE: Toggle Advanced → Submit inputs
+    FE->>BE: POST /api/footprint?advanced=true
+    BE->>AI: POST /predict_v2
+    AI-->>BE: footprint, CI, MAC, tokenization, notes
+    BE-->>FE: unified response
+    FE-->>User: visualized insights
+```
 
 ## Repository Structure
 
