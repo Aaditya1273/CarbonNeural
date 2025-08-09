@@ -26,11 +26,11 @@ A hackathon-ready platform combining AI-driven carbon footprint analysis, autono
 
 ```mermaid
 flowchart LR
-    UI[React + Vite\nDashboard] -->|POST /api/footprint\n(?advanced=true)| B(Express Backend)
-    B -->|proxy| A1[/AI: /predict/]
-    B -->|proxy (advanced)| A2[/AI: /predict_v2/]
-    B --> H[(Hedera HTS)]
-    A2 -->|uncertainty, MAC, tokenization| UI
+    UI[React + Vite<br/>Dashboard] -->|POST /api/footprint · advanced=true| BE(Express Backend)
+    BE -->|proxy| AI1[/AI: /predict/]
+    BE -->|proxy advanced| AI2[/AI: /predict_v2/]
+    BE --> HTS[(Hedera HTS)]
+    AI2 -->|uncertainty, MAC, tokenization| UI
 ```
 
 ### Request Lifecycle (Advanced)
