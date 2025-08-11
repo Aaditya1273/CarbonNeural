@@ -22,7 +22,7 @@ A hackathon-ready platform combining AI-driven carbon footprint analysis, autono
 
 > Tip: Toggle “Use Advanced Engine” in the dashboard to switch engines.
 
-## Architecture
+## Architecture:
 
 ```mermaid
 flowchart LR
